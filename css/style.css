@@ -1,0 +1,47 @@
+body {
+    background: url(texture-noise.png);
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#header {
+    position: fixed;
+    top: 20%;
+    left: 80%;
+    width: 90%;
+    z-index: 1;
+    display: block;
+}
+
+#project-title {
+    font-size: 46px;
+    font-weight: 300;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.require {
+    position: relative;
+    right: 0;
+    width: 1280px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #999;
+}
+
+.node circle {
+    cursor: pointer;
+    fill: #6db169;
+    stroke: #28b473;
+    stroke-width: 1.2px;
+}
+
+.node text {
+    font-size: 12px;
+    fill: #505050;
+}
+
+path.link {
+    fill: none;
+    stroke: #d0d0d0;
+    stroke-width: 1.2px;
+}

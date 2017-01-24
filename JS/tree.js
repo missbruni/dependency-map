@@ -134,16 +134,3 @@ function toggle(d) {
     d._children = null;
   }
 }
-
-//To make the div scroll with page
-document.getElementsByName(window).scroll(function(){
-
-  if($(document).scrollTop() > 400) {
-    var newPos = $(document).scrollTop() + 400 ;
-    $('.header').css( {top:newPos});
-  }
-
-  else {
-    $('.header').css( {top:400});
-  }
-})

@@ -43,7 +43,7 @@ processDirectory('src') //change to the directory to be scanned
     ele.children = ele.children.map(requireToMap => {
       return { name: requireToMap };
     });
-    return item;
+    return ele;
   }))
   .then(output => {
     return {

@@ -29,8 +29,8 @@ processDirectory('JS') //change JS to the directory to be processed
     Promise.all(files.map(({filePath}) =>
       readfile(filePath, 'utf8')
         .then(content => ({
-          filePath: filePath.split('.js')[0],
-          requires: content.split('\n')
+          'name': filePath.split('.js')[0],
+          'children': content.split('\n')
             .filter(line => line.includes('require(\'.'))
             .map(require => {
               const requiredPath = require.split('(\'')[1].split('\')')[0];
@@ -38,10 +38,18 @@ processDirectory('JS') //change JS to the directory to be processed
             })
         }))
     )))
-  .then(dependencyList =>
-    dependencyList.reduce((mappedDependencies, {filePath, requires}) => {
-      mappedDependencies = mappedDependencies.concat(requires.map(require => `"${filePath}" -> "${require}"`));
-      return mappedDependencies;
-    }, []))
-  .then(output => writeFile('outputDependency.txt', output.join('\n')))
+  .then(output => output.filter(ele => ele.children.length > 0))
+  .then(output => output.map(item => {
+    item.children = item.children.map(child => {
+      return { name: child };
+    });
+    return item;
+  }))
+  .then(output => {
+    return {
+      'name': 'JS',
+      'children': output
+    }
+  })
+  .then(outputDependency => writeFile('outputDependency.json', JSON.stringify(outputDependency)))
   .catch(e => console.error(e));

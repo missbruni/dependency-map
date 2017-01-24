@@ -1,0 +1,33 @@
+{
+  "name" : "src",
+  "children" : [
+    { "name" : "/main",
+      "children": [
+        { "name" : "a/path/dependency" },
+        { "name" : "another/any/dependency" },
+        { "name" : "path/to/another" },
+        { "name" : "more/dependencies" },
+        { "name" : "more/dependencies" },
+        { "name" : "more/dependencies" }
+      ]
+    },
+    { "name" : "/shared",
+      "children": [
+        { "name" : "lets/add/another/dependency" },
+        { "name" : "all/based/on/requirecalls" }
+      ]
+    },
+    { "name" : "/utils",
+      "children": [
+        { "name" : "how/cool/is/that" },
+        { "name" : "omg/another/one" }
+      ]
+    },
+    { "name" : "what/could/this/be",
+      "children": [
+        { "name" : "god/knows" },
+        { "name" : "maybe/a/dependency" }
+      ]
+    }
+  ]
+}

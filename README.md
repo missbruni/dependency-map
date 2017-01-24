@@ -1,17 +1,34 @@
 # dependency-map
-A mini project to write a file containing the dependencies for each file in a project
-Dependency output will be based on the require calls for each file in the desired directory. 
+A mini project to create a d3 diagram using a tree dependency layout based on a JSON file. Pretty cool, hu? 
 
-####Output example: 
+###How can I get my project to look so awesome ?
 
-`JS/Main/foo -> JS/main/bar`
+* copy `json-generator.js` in the root of your cool project.
 
-###To ge the dependency output in your project: 
+#####For now, a couple of changes need to be added manually to make this work:
 
-* In `index.js` add the param in `processDirectory()` of the directory you wish to scan for dependencies. 
+* In `json-generator.js` add the param in `processDirectory()` of the directory you wish to scan for dependencies, please know this will only be scanning for `require` calls.
 
-* To output a dependency file add `index.js` to your project and run `node index.js` to get the 
-dependency output file `outputDependency.txt`.
+######Example
  
-* To get the map, copy the content produced from `outputDependency.txt` into [here](http://mdaines.github.io/viz.js/)
-to get a dependency map / graph. 
+ ```
+        processDirectory('src') 
+            .then(flattenDeep)
+            .then(files =>
+ ```
+ 
+ * Do the same here: 
+ 
+```
+        .then(output => {
+            return {
+            'name': 'src',
+```
+* On the CLI of your project root run `node json-generator.js` to get the `outputDependency.json` generated. 
+You will find this file on your root folder.
+
+* Copy the `outputDependency.json` back into the dependency-map project. 
+
+* Open `tree.html` and you should have a beautiful, interactive and sleek dependency tree layout for your project. 
+ 
+* if you wish to tidy your JSON you can tidy it up at this [JSON Formatter](https://jsonformatter.curiousconcept.com/).

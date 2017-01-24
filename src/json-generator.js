@@ -23,7 +23,7 @@ const processDirectory = (directoryPath) =>
       ))
   );
 
-processDirectory('JS') //change JS to the directory to be processed
+processDirectory('src') //change to the directory to be scanned
   .then(flattenDeep)
   .then(files =>
     Promise.all(files.map(({filePath}) =>
@@ -39,15 +39,15 @@ processDirectory('JS') //change JS to the directory to be processed
         }))
     )))
   .then(output => output.filter(ele => ele.children.length > 0))
-  .then(output => output.map(item => {
-    item.children = item.children.map(child => {
-      return { name: child };
+  .then(output => output.map(ele => {
+    ele.children = ele.children.map(requireToMap => {
+      return { name: requireToMap };
     });
     return item;
   }))
   .then(output => {
     return {
-      'name': 'JS',
+      'name': 'src',
       'children': output
     }
   })

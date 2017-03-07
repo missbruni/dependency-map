@@ -30,6 +30,6 @@ You will find this file on your root folder.
 
 * Copy the `outputDependency.json` back into the dependency-map project. 
 
-* Open `tree.html` and you should have a beautiful, interactive and sleek dependency tree layout for your project. 
+* Open `index.html` and you should have a beautiful, interactive and sleek dependency tree layout for your project. 
  
 * if you wish to tidy your JSON you can tidy it up at this [JSON Formatter](https://jsonformatter.curiousconcept.com/).

@@ -23,9 +23,7 @@ const processDirectory = (directoryPath) =>
       ))
   );
 
-
-
-const processDependency = (pathToScan, outputFile) => {
+const processDependency = (pathToScan) => {
   return processDirectory(pathToScan) //change to the directory to be scanned
   .then(flattenDeep)
   .then(files =>
@@ -54,8 +52,8 @@ const processDependency = (pathToScan, outputFile) => {
       'children': output
     }
   })
-  .then(outputDependency => writeFile(outputFile, JSON.stringify(outputDependency)))
+  .then(outputDependency => writeFile('outputDependency.json', JSON.stringify(outputDependency)))
   .catch(e => console.error(e));
-}
+};
 
-  module.exports = processDependency;
+module.exports = processDependency;

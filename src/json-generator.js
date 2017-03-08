@@ -23,7 +23,10 @@ const processDirectory = (directoryPath) =>
       ))
   );
 
-processDirectory('src') //change to the directory to be scanned
+
+
+const processDependency = (pathToScan, outputFile) => {
+  return processDirectory(pathToScan) //change to the directory to be scanned
   .then(flattenDeep)
   .then(files =>
     Promise.all(files.map(({filePath}) =>
@@ -47,9 +50,12 @@ processDirectory('src') //change to the directory to be scanned
   }))
   .then(output => {
     return {
-      'name': 'src',
+      'name': pathToScan,
       'children': output
     }
   })
-  .then(outputDependency => writeFile('outputDependency.json', JSON.stringify(outputDependency)))
+  .then(outputDependency => writeFile(outputFile, JSON.stringify(outputDependency)))
   .catch(e => console.error(e));
+}
+
+  module.exports = processDependency;

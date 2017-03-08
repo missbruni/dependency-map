@@ -1,19 +1,16 @@
 {
-  "name": "dependency-map",
+  "name": "require-dependency-map",
   "version": "1.0.0",
   "description": "A mini project to write a file containing the dependencies for each file in a project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "three.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/missbruni/dependency-map.git"
+    "url": "git+https://github.com/missbruni/require-dependency-map.git"
   },
   "author": "Bruna Lima",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/missbruni/dependency-map/issues"
+    "url": "https://github.com/missbruni/require-dependency-map/issues"
   },
-  "homepage": "https://github.com/missbruni/dependency-map#readme"
+  "homepage": "https://github.com/missbruni/require-dependency-map#readme"
 }

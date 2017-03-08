@@ -1,6 +1,6 @@
 {
   "name": "require-dependency-map",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A mini project to write a file containing the dependencies for each file in a project",
   "main": "three.js",
   "repository": {

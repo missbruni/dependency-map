@@ -2,7 +2,7 @@
   "name": "require-dependency-map",
   "version": "2.0.0",
   "description": "A mini project to write a file containing the dependencies for each file in a project",
-  "main": "three.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/missbruni/require-dependency-map.git"

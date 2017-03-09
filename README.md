@@ -9,7 +9,7 @@ Pretty cool, hu?
 npm install require-dependency-map
 ```
 
-### Example using a grunt task"
+### Example using a grunt task:
 
 ```
 const processDependency = require('require-dependency-map');

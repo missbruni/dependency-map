@@ -1,7 +1,7 @@
 {
   "name": "require-dependency-map",
-  "version": "2.0.0",
-  "description": "A mini project to write a file containing the dependencies for each file in a project",
+  "version": "3.0.0",
+  "description": "Generate a interactive dependency map scanning your project for all require calls",
   "main": "index.js",
   "repository": {
     "type": "git",

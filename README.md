@@ -1,7 +1,7 @@
 # require-dependency-map 
 ###[LIVE DEMO](https://missbruni.github.io/require-dependency-map/tree.html)
 Generates a [d3 interactive dependency map](http://mbostock.github.io/d3/talk/20111018/tree.html) based on all require calls. 
-Pretty cool, hu? 
+Pretty cool, huh? 
 
 ###How can I get my project to look so awesome ?
 
@@ -13,14 +13,13 @@ npm install require-dependency-map
 
 ```
 const processDependency = require('require-dependency-map');
-const sourceDir = 'src'
-const targetDir = 'dependency-map'
 
 module.exports = (grunt) => 
   grunt.task.registerTask('outputDependency', 'outputs dependency d3 dir', function () { 
       const done = this.async();
+      const {src = 'src', target = 'dependency-map'} = this.options();
 
-      processDependency(sourceDir, targetDir)
+      processDependency(src, target)
       .then(() => done())
       .catch(e => console.error(e)); 
   });

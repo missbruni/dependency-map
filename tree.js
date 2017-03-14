@@ -1,5 +1,5 @@
-var m = [20, 120, 20, 120],
-  w = 1280 - m[1] - m[3],
+var m = [120, 200, 120, 200],
+  w = 5000 - m[1] - m[3],
   h = 1000 - m[0] - m[2],
   i = 0,
   root;
@@ -41,7 +41,7 @@ function update(source) {
   var nodes = tree.nodes(root);
 
   // Normalize for fixed-depth.
-  nodes.forEach(d => { d.y = d.depth * 250; });
+  nodes.forEach(d => { d.y = d.depth * 410; });
 
   // Update the nodes…
   var node = vis.selectAll("g.node")

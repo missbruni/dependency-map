@@ -1,6 +1,6 @@
 {
   "name": "require-dependency-map",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Generate a interactive dependency map scanning your project for all require calls",
   "main": "index.js",
   "repository": {

@@ -13,7 +13,30 @@ const promisify = (func) =>
 const copyFile = (from, to) => 
   new Promise((resolve, reject) => 
     fs.createReadStream(from).pipe(fs.createWriteStream(to)).on('finish', () => resolve).on('error', err => reject(err))
-  )  
+  )
+
+const doTransform = ({name, children = []}, initial) => {
+  if(children.length > 0) {
+      return {
+        name,
+        children: children.map(
+          child => 
+            doTransform(
+              initial.children.find(({name}) => name === child.name) || { name: child.name }, 
+              initial
+            )
+        )
+      }
+  } else {
+     return {name}
+  }
+}
+
+const transform = (initial, entryPoint) => {
+  const entry = initial.children.find(({name}) => name === entryPoint);
+
+  return doTransform(entry, initial);
+}
 
 const readdir = promisify(fs.readdir);
 const readfile = promisify(fs.readFile);
@@ -21,16 +44,16 @@ const writeFile = promisify(fs.writeFile);
 const stat = promisify(fs.stat);
 const mkdir = promisify(fs.mkdir);
 
-const processDirectory = (directoryPath) =>
-  readdir(directoryPath).then(files =>
-    Promise.all(files.map(file => path.join(directoryPath, file))
+const processDirectory = (srcDir) =>
+  readdir(srcDir).then(files =>
+    Promise.all(files.map(file => path.join(srcDir, file))
       .map(filePath => stat(filePath)
         .then(stats => stats.isDirectory() ? processDirectory(filePath) : {filePath})
       ))
   );
 
-const processDependency = (pathToScan, targetDir) => {
-  return processDirectory(pathToScan) //change to the directory to be scanned
+const processDependency = (entryPoint, srcDir, targetDir) => {
+  return processDirectory(srcDir) 
   .then(flattenDeep)
   .then(files =>
     Promise.all(files.map(({filePath}) =>
@@ -54,13 +77,14 @@ const processDependency = (pathToScan, targetDir) => {
   }))
   .then(output => {
     return {
-      'name': pathToScan,
+      'name': srcDir,
       'children': output
     }
   })
+  .then(outputToTransform => transform(outputToTransform, entryPoint))
   .then(outputDependency => 
      mkdir(targetDir).catch(err => err.code === 'EEXIST' ? true : console(err))
-    .then(writeFile(targetDir + '/outputDependency.json', JSON.stringify(outputDependency)))
+    .then(writeFile(targetDir + '/outputDependency.json', JSON.stringify(outputDependency, null, 2)))
     .then(() => 
       Promise.all([
         copyFile(path.join(__dirname, 'tree.js'), path.join(targetDir, 'tree.js')),

@@ -75,12 +75,10 @@ const processDependency = (entryPoint, srcDir, targetDir) => {
     });
     return ele;
   }))
-  .then(output => {
-    return {
-      'name': srcDir,
-      'children': output
-    }
-  })
+  .then(output => ({
+    name: srcDir.split(path.sep).join(path.posix.sep),
+    children: output.map(({name}) => ({name: name.split(path.sep).join(path.posix.sep)}))
+  }))
   .then(outputToTransform => transform(outputToTransform, entryPoint))
   .then(outputDependency => 
      mkdir(targetDir).catch(err => err.code === 'EEXIST' ? true : console(err))
